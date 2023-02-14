@@ -1,11 +1,3 @@
-.container {}
-
-.wrapper {}
-
-.year {}
-
-.list {}
-
-.title {}
-
-.link {}
+.hidden {
+    display: none;
+}
