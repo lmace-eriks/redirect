@@ -1,7 +1,7 @@
 {
   "vendor": "eriksbikeshop",
   "name": "redirect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": "Redirect",
   "description": "Redirect component",
   "defaultLocale": "pt-BR",

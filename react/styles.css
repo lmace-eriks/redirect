@@ -1,3 +1,50 @@
-.hidden {
-    display: none;
+.redirectBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 52rem;
+    margin: 1rem auto;
+    padding: 2rem;
+    border: 5px solid #ec1d24;
+}
+
+.redirectText {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    animation: rotate 2s linear infinite;
+}
+
+.path {
+    stroke: black;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+    }
+
+    100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+    }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { canUseDOM } from "vtex.render-runtime";
 
 import styles from "./styles.css";
@@ -14,6 +14,7 @@ interface RedirectObject {
 
 const Redirect: StorefrontFunctionComponent<RedirectProps> = ({ redirectList }) => {
   const openGate = useRef(true);
+  const [isRedirect, setIsRedirect] = useState(false);
 
   useEffect(() => {
     if (!openGate.current) return;
@@ -28,6 +29,7 @@ const Redirect: StorefrontFunctionComponent<RedirectProps> = ({ redirectList }) 
 
     for (const spot of redirectList) {
       if (spot.from === currentLocation) {
+        setIsRedirect(true);
         goToRedirect(spot.to);
         break;
       }
@@ -41,7 +43,20 @@ const Redirect: StorefrontFunctionComponent<RedirectProps> = ({ redirectList }) 
     window.location.href = to;
   };
 
-  return <div className={styles.hidden}></div>;
+  const RedirectDisplay = () => (
+    <div className={styles.redirectBox}>
+      <div className={styles.redirectText}>Redirecting... Please Wait.</div>
+      <SpinnerAnim />
+    </div>
+  )
+
+  const SpinnerAnim = () => (
+    <svg className={styles.spinner} viewBox="0 0 50 50">
+      <circle className={styles.path} cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    </svg>
+  )
+
+  return isRedirect ? <RedirectDisplay /> : <div data-redirect="false"></div>;
 }
 
 Redirect.schema = {
